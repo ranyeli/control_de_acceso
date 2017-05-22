@@ -1,0 +1,54 @@
+<form id="form_registrar" role="form" class="clearfix" method="post" enctype="application/x-www-form-urlencoded" action="{{url_for('registerVisit')}}">
+
+	<fieldset class="col-md-5">
+		<legend>DATOS GENERALES DE VISITA</legend>
+		
+		<label for="visita_fecha" class="control-label">FECHA</label>
+		<div class="input-group" id="reg_fecha"> 
+			<input type="text" id="visita_fecha" name="visitaFecha" class="form-control datepicker" value="{{fecha}}" readonly="readonly" />
+			<a href="#" class="input-group-addon">
+				<li class="glyphicon glyphicon-edit"></li>	
+			</a>
+		</div>
+		
+		<label for="visita_hora" class="control-label">HORA</label>
+		<div class="input-group" id="reg_hora"> 
+			<input type="text" id="visita_hora" name="visitaHora" class="form-control" value="{{hora}}" readonly="readonly" />
+			<a href="#" class="input-group-addon">
+				<li class="glyphicon glyphicon-edit"></li>		
+			</a>
+		</div>
+
+		<label for="visita_origen">ORIGEN</label>
+		<input type="text" placeholder="Desde donde viene el visitante" id="visita_origen" name="visitaOrigen"  class="form-control" />
+		
+		<label for="visita_destino">DESTINO</label>
+		<input type="text" placeholder="Hacia donde se dirige el visitante" id="visita_destino" name="visitaDestino"  class="form-control" />
+
+		<label for="visita_razon">RAZON</label>
+		<textarea placeholder="Razon de la visita" id="visita_razon" name="visitaRazon"  class="form-control" ></textarea>
+		
+		<label for="visita_autorizada">AUTORIZADA POR</label>
+		<input type="text" placeholder="Quien autoriza la entrada del visitante" id="visita_autorizada" name="visitaAutorizada"  class="form-control" />
+	</fieldset>
+
+	<fieldset class="col-md-5 col-md-offset-2 form-group">
+		<legend>VISITANTE</legend>
+		<label for="visitante_nombre">NOMBRE</label>
+		<input type="text" placeholder="Nombre del visitante" id="visitante_nombre" name="visitanteNombre"  class="form-control" />
+		
+		<label for="visitante_cedula">CEDULA</label>
+		<input type="text" placeholder="Cedula del visitante" id="visitante_cedula" name="visitanteCedula"  class="form-control" />
+	</fieldset>
+	
+	<fieldset class="col-md-4 col-md-offset-2 form-group">
+		<legend>VEHICULO</legend>
+		<label for="visitante_desc">DESCRIPCION</label>
+		<textarea placeholder="Describir el vehiculo" id="vehiculo_desc" name="vehiculoDesc"  class="form-control"></textarea>
+		
+		<div class="text-left" id="reg_submit">
+			<input type="submit" value="REGISTRAR" class="btn btn-default btn-lg" />
+		</div>
+	</fieldset>
+	
+</form>

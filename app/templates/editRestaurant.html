@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="edit_restaurant">
+    <h1>Editing</h1>
+    <div class="border-dashed">
+        <form enctype="application/x-www-form-urlencoded" method="post" action="{{url_for('editRestaurantPOST', restaurant_id=restaurant.id)}}">
+            <label>Current Name: </label><span>{{restaurant.name}}</span><br>
+            <label for="rest">New Name: </label><input type="text" placeholder="Restaurant" id="rest" name="rest_name"/>
+            <span class="inputs"><input type="submit" value="Submit" />
+                <a href="{{url_for('restaurantHome')}}">
+                    <input type="button" value="Cancel" />
+                </a>
+            </span>
+        </form>
+    </div>
+</div>
+{% endblock %}

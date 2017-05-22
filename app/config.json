@@ -1,0 +1,11 @@
+{
+	"db":
+	{
+		"url":"mysql+pymysql://root:root@localhost/controlacceso"	
+	},
+	"server":
+	{
+		"port":8080,
+		"host":"*"
+	}
+}

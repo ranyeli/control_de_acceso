@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+<ul class="nav nav-tabs">
+  <li class="active">
+  	<a data-toggle="tab" href="#registrar">REGISTRAR VISITA</a>
+  </li>
+  <li>
+  	<a data-toggle="tab" href="#consultar">CONSULTAR VISITAS</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+	<div id="registrar" class="tab-pane active">
+		{% include "registrar.html" %}
+	</div>
+	
+	<div id="consultar" class="tab-pane">
+		{% include "consultar.html" %}
+	</div>	
+
+</div>
+
+<!--<p>Papa, yuca, huevo, {{fecha}}</p>-->
+
+
+{% endblock %}

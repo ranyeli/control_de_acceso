@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="menu">
+    <h1>{{restaurant.name}}</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for msg in messages %}
+            <li><strong><em>{{msg}}</em></strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <a href="{{url_for('newMenu', restaurant_id=restaurant.id)}}" class="add">
+        <img src="{{url_for('static', filename='images/add.png')}}">
+    </a>
+    <div class="border-dashed">
+        <table id="menu_items">
+            {% for menuitem in menu %}
+            <tr>
+                <td>
+                    <span class="menu_item">
+                        <span class="m_label">Name: </span><span class="m_content">{{menuitem.name}}</span><br>
+                        <span class="m_label">Course: </span><span class="m_content">{{menuitem.course}}</span><br>
+                        <span class="m_label">Price: </span><span class="m_content">{{menuitem.price}}</span><br>
+                        <span class="m_label">Description: </span><br>
+                        <span class="m_content">{{menuitem.description}}</span>
+                    </span>
+                </td>
+                <td>
+                    <a href="{{url_for('editMenu', restaurant_id=menuitem.restaurant_id, item_id=menuitem.id)}}" class="edit">
+                        <img src="{{url_for('static', filename='images/pencil.png')}}" />
+                    </a>
+                </td>
+                <td>
+                    <a href="{{url_for('deleteMenu', restaurant_id=menuitem.restaurant_id, item_id=menuitem.id)}}" class="delete">
+                        <img src="{{url_for('static', filename='images/delete.png')}}" />
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td style="font-size: large;">No menu items found</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

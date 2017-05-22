@@ -1,0 +1,43 @@
+body{
+	#background-color: red;
+}
+
+form label{
+	margin-top: 10px;
+}
+
+form textarea{
+	min-height: 105px;
+}
+
+#reg_hora, #reg_fecha{
+	width: 165px;
+}
+
+#form_registrar{
+	padding-top: 15px;
+}
+
+#visitante_cedula{
+	max-width: 160px;
+}
+
+#visitante_nombre{
+	max-width: 270px;
+}
+
+#reg_submit{
+	min-height: 100px;
+}
+
+#reg_submit input{
+	position: relative;
+	top: 70px;
+}
+
+@media (min-width: 1200px) {
+    .container{
+        #max-width: 970px;
+        max-width: 900px;
+    }
+}

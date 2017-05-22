@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+{% block content %}
+<div id="restaurants">
+    <h1>Restaurants!</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for msg in messages %}
+            <li><strong><em>{{msg}}</em></strong></li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <a href="{{url_for('newRestaurant')}}" class="add">
+        <img src="{{url_for('static', filename='images/add.png')}}">
+    </a>
+    <div class="border-dashed">
+        <table id="rests_list">
+            {% for restaurant in restaurants %}
+            <tr>
+                <td><a href="{{url_for('restaurantMenu', restaurant_id=restaurant.id)}}">{{restaurant.name}}</a></td>
+                <td>
+                    <a href="{{url_for('editRestaurant', restaurant_id=restaurant.id)}}" class="edit">
+                        <img src="{{url_for('static', filename='images/pencil.png')}}" />
+                    </a>
+                </td>
+                <td>
+                    <a href="{{url_for('deleteRestaurant', restaurant_id=restaurant.id)}}" class="delete">
+                        <img src="{{url_for('static', filename='images/delete.png')}}" />
+                    </a>
+                </td>
+            </tr>
+            {% else %}
+            <tr><td style="font-size: large;">No restaurants found</td></tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
