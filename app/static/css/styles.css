@@ -41,3 +41,26 @@ form textarea{
         max-width: 900px;
     }
 }
+
+#add_filter{
+	position:relative;
+	top: 16px;
+	cursor: pointer;
+}
+
+#filtros .datepicker{
+	max-width: 99px;
+}
+
+#filtros .v_hora{
+	max-width: 117px;
+}
+
+#filtros{
+	margin-bottom: 10px;
+}
+
+#filtros .input-sm,
+#visita_fecha, #visita_hora{
+	font-size: 1.15em;
+}

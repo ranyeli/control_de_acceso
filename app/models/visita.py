@@ -30,7 +30,7 @@ class Visita(Base):
 			"razon": self.razon, "fecha": self.fecha_visita,
 			"hora": self.hora_visita, 
 			"fecha_evento": parse(self.fecha_evento).strftime("%d/%m/%Y %I:%M:%S %p"),
-			"visitante": self.visitante.nombre, 
+			"visitante": self.visitante.nombre, "visitante_cedula": self.visitante.cedula,
 			"vehiculo": self.vehiculo.descripcion,
 			"autorizada_por": self.seguridad.nombre
 		}

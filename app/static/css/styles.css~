@@ -32,7 +32,7 @@ form textarea{
 
 #reg_submit input{
 	position: relative;
-	top: 100px;
+	top: 70px;
 }
 
 @media (min-width: 1200px) {
@@ -40,4 +40,26 @@ form textarea{
         #max-width: 970px;
         max-width: 900px;
     }
+}
+
+#add_filter{
+	position:relative;
+	top: 16px;
+	cursor: pointer;
+}
+
+#filtros .datepicker{
+	max-width: 99px;
+}
+
+#filtros .v_hora{
+	max-width: 117px;
+}
+
+#filtros{
+	margin-bottom: 10px;
+}
+
+#filtros .input-sm{
+	font-size: 1.15em;
 }

@@ -24,7 +24,7 @@ $(document).ready(() => {
 	$.mask.definitions['h'] = "[APap]";
 	$.mask.definitions['z'] = "[Mm]";
 	$("#visitante_cedula").mask("999-9999999-9");
-	$("#visita_hora").mask("99:99:99 hz");
+	$(".v_hora").mask("99:99:99 hz");
 	$(".datepicker").mask("99/99/9999");
 	function updateTime(){
     	var currentTime = new Date();

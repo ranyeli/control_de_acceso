@@ -5,7 +5,7 @@
 		
 		<label for="visita_fecha" class="control-label">FECHA</label>
 		<div class="input-group" id="reg_fecha"> 
-			<input type="text" id="visita_fecha" name="visitaFecha" class="form-control" value="{{fecha}}" readonly="readonly" />
+			<input type="text" id="visita_fecha" name="visitaFecha" class="form-control datepicker" value="{{fecha}}" readonly="readonly" />
 			<a href="#" class="input-group-addon">
 				<li class="glyphicon glyphicon-edit"></li>	
 			</a>

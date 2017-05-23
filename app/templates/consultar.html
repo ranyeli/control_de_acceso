@@ -1,28 +1,25 @@
 <div id="filtros" class="form-inline">
-	<div class="form-group">
-		<label for="desde_fecha" class="">Desde</label>
-		<input type="text" class="show form-control datepicker" name="desdeFecha" id="desde_fecha" />	
+	<label for="desde_fecha" class="">Fecha</label>
+	<div class="input-group input-daterange">
+    	<input type="text" class="show form-control datepicker input-sm" name="desdeFecha" id="desde_fecha" placeholder="día/mes/año" />	
+    	<div class="input-group-addon">hasta</div>
+    	<input type="text" class="show form-control datepicker input-sm" name="hastaFecha" id="hasta_fecha" placeholder="día/mes/año" />	
 	</div>
-	<div class="form-group">
-		<label for="hasta_fecha" class="">Hasta</label>
-		<input type="text" class="show form-control datepicker" name="hastaFecha" id="hasta_fecha" />	
-	</div>
+	<label for="desde_hora" class="">Hora</label>
 	<div class="input-group">
-		<input type="button" />
-		<span class="input-group-addon">
-			<li class="glyphicon glyphicon-plus"></li>
-		</span>
-
+		<input type="text" class="show form-control v_hora input-sm" name="desdeHora" id="desde_hora" placeholder="hh:mm:ss am" />	
+		<div class="input-group-addon">hasta</div>
+		<input type="text" class="show form-control v_hora input-sm" name="hastaHora" id="hasta_hora" placeholder="hh:mm:ss pm" />	
 	</div>
-	
+	<span class="glyphicon glyphicon-plus btn-link btn-lg" id="add_filter"></span>
 </div>
 <table class="table" id="visitas_table">
 	<thead>
  		<tr>
- 		<th data-field="visitante">VISITANTE</th>
+ 			<th data-field="visitante">VISITANTE</th>
+ 			<th data-field="visitante_cedula">VISITANTE ID</th>
       	<th data-field="origen">ORIGEN</th>
       	<th data-field="destino">DESTINO</th>
-     		<th data-field="razon">RAZON</th>
 			<th data-field="vehiculo">VEHICULO</th>
 			<th data-field="autorizada_por">AUTORIZADA POR</th>
 			<th data-field="fecha">FECHA</th>

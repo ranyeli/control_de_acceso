@@ -21,11 +21,14 @@ $(document).ready(() => {
     weekStart: 0
 	};
 	$(".datepicker").datepicker({language:'es', enableOnReadonly: false});
+	$('.input-daterange input').each(function() {
+    $(this).datepicker('clearDates');
+	});
 	$.mask.definitions['h'] = "[APap]";
 	$.mask.definitions['z'] = "[Mm]";
 	$("#visitante_cedula").mask("999-9999999-9");
-	$("#visita_hora").mask("99:99:99 hz");
-	$("#visita_fecha").mask("99/99/9999");
+	$(".v_hora").mask("99:99:99 hz");
+	$(".datepicker").mask("99/99/9999");
 	function updateTime(){
     	var currentTime = new Date();
     	var hours = currentTime.getHours();
