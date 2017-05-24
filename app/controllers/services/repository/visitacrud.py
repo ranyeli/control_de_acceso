@@ -17,5 +17,7 @@ from sqlalchemy import text
 #	return db.engine.execute(sql)
 	
 	
-def get_all_visitas():
-    return session.query(Visita).order_by(Visita.id.desc()).all()
+def get_all_visitas(params):
+    offset = params.args.get('offset')
+    limit = params.args.get('limit')
+    return session.query(Visita).order_by(Visita.id.desc()).slice(offset, limit).all()

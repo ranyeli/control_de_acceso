@@ -58,8 +58,18 @@ form textarea{
 
 #filtros{
 	margin-bottom: 10px;
+	margin-top: 10px;
 }
 
-#filtros .input-sm{
+#filtros .input-sm,
+#visita_fecha, #visita_hora{
 	font-size: 1.15em;
+}
+
+#buscar_visita{
+	max-width: 200px;
+}
+
+#filtros .pull-left{
+	margin-right: 10px;
 }

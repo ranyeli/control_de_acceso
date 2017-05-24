@@ -1,17 +1,65 @@
-<div id="filtros" class="form-inline">
-	<label for="desde_fecha" class="">Fecha</label>
+<div id="filtros" class="form-inline clearfix">
+	<div class="col-md-4 col-md-offset-1">
+		<label for="desde_fecha" class="">Fecha <span class="	glyphicon glyphicon-calendar"></span></label>
+	</div>
+	<div class="col-md-4">
+		<label for="desde_hora" class="">Hora <span class="glyphicon glyphicon-time"></span></label>
+	</div>
+	
+	<div class="pull-left">
 	<div class="input-group input-daterange">
-    	<input type="text" class="show form-control datepicker input-sm" name="desdeFecha" id="desde_fecha" placeholder="día/mes/año" />	
-    	<div class="inner-addon">hasta</div>
+    	<input type="text" class="show form-control datepicker input-sm" name="desdeFecha" id="desde_fecha" placeholder="día/mes/año" />	  	
+    	<div class="input-group-addon">hasta</div>
     	<input type="text" class="show form-control datepicker input-sm" name="hastaFecha" id="hasta_fecha" placeholder="día/mes/año" />	
 	</div>
-	<label for="desde_hora" class="">Hora</label>
+	</div>
+	
+	<div class="pull-left">
 	<div class="input-group">
 		<input type="text" class="show form-control v_hora input-sm" name="desdeHora" id="desde_hora" placeholder="hh:mm:ss am" />	
 		<div class="input-group-addon">hasta</div>
 		<input type="text" class="show form-control v_hora input-sm" name="hastaHora" id="hasta_hora" placeholder="hh:mm:ss pm" />	
 	</div>
-	<span class="glyphicon glyphicon-plus btn-link btn-lg" id="add_filter"></span>
+	</div>
+	
+	<!--<table>
+		<tr>
+			<td class="text-center"><label for="desde_fecha">Fecha</label></td>
+			<td class="text-center"><label for="desde_hora" class="">Hora</label></td>
+		</tr>
+		<tr>
+			<td>
+				<div class="input-group input-daterange">
+    				<input type="text" class="show form-control datepicker input-sm" name="desdeFecha" id="desde_fecha" placeholder="día/mes/año" />	  	
+    				<div class="input-group-addon">hasta</div>
+    				<input type="text" class="show form-control datepicker input-sm" name="hastaFecha" id="hasta_fecha" placeholder="día/mes/año" />	
+				</div>
+			</td>
+			<td>
+				<div class="input-group">
+					<input type="text" class="show form-control v_hora input-sm" name="desdeHora" id="desde_hora" placeholder="hh:mm:ss am" />	
+					<div class="input-group-addon">hasta</div>
+					<input type="text" class="show form-control v_hora input-sm" name="hastaHora" id="hasta_hora" placeholder="hh:mm:ss pm" />	
+				</div>
+			</td>
+		</tr>
+	</table>-->
+	<div class="pull-left">
+	<div class="input-group">
+   	<div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <strong>Visitante</strong> <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li class="hidden"><a href="#">Visitante</a></li>
+          <li class="show"><a href="#">Seguridad</a></li>
+        </ul>
+      </div><!-- /btn-group -->
+      <input type="text" class="show form-control input-sm" name="buscarVisita" id="buscar_visita" aria-label="..." placeholder="nombre o cedula" />	
+	</div><!-- /input-group -->
+	</div>
+
+<!--	<span class="glyphicon glyphicon-plus btn-link btn-lg" id="add_filter"></span>-->
 </div>
 <table class="table" id="visitas_table">
 	<thead>
@@ -30,7 +78,8 @@
 </table>
 <div class="text-center">
 	<ul class="pagination">
-		<li><a href="#">1</a></li>
+		<li><a href="#">&laquo;</a></li>
+		<li class="active"><a href="#">1</a></li>
   		<li><a href="#">2</a></li>
   		<li><a href="#">3</a></li>
   		<li><a href="#">4</a></li>

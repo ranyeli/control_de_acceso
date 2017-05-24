@@ -1,66 +1,86 @@
-body{
-	#background-color: red;
+body {
+    #background-color: red;
 }
 
-form label{
+
+/*form label{
 	margin-top: 10px;
+}*/
+
+form textarea {
+    min-height: 105px;
 }
 
-form textarea{
-	min-height: 105px;
+#reg_hora,
+#reg_fecha {
+    width: 165px;
 }
 
-#reg_hora, #reg_fecha{
-	width: 165px;
+#form_registrar {
+    padding-top: 15px;
 }
 
-#form_registrar{
-	padding-top: 15px;
+#visitante_cedula {
+    max-width: 160px;
 }
 
-#visitante_cedula{
-	max-width: 160px;
+#visitante_nombre {
+    max-width: 270px;
 }
 
-#visitante_nombre{
-	max-width: 270px;
+#reg_submit {
+    min-height: 100px;
 }
 
-#reg_submit{
-	min-height: 100px;
-}
-
-#reg_submit input{
-	position: relative;
-	top: 70px;
+#reg_submit input {
+    position: relative;
+    top: 70px;
 }
 
 @media (min-width: 1200px) {
-    .container{
+    .container {
         #max-width: 970px;
         max-width: 900px;
     }
 }
 
-#add_filter{
-	position:relative;
-	top: 16px;
-	cursor: pointer;
+#add_filter {
+    position: relative;
+    top: 16px;
+    cursor: pointer;
 }
 
-#filtros .datepicker{
-	max-width: 99px;
+#filtros .datepicker {
+    max-width: 99px;
 }
 
-#filtros .v_hora{
-	max-width: 117px;
+#filtros .v_hora {
+    max-width: 117px;
 }
 
-#filtros{
-	margin-bottom: 10px;
+#filtros {
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 #filtros .input-sm,
-#visita_fecha, #visita_hora{
-	font-size: 1.15em;
+#visita_fecha,
+#visita_hora {
+    font-size: 1.15em;
+}
+
+#buscar_visita {
+    max-width: 200px;
+}
+
+#filtros .pull-left {
+    margin-right: 10px;
+}
+
+#limit {
+    padding-bottom: 0;
+    margin-bottom: 5px;
+    padding-top: 0px;
+    /*position: relative;
+    left: 95%;*/
 }

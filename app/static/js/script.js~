@@ -21,37 +21,12 @@ $(document).ready(() => {
     weekStart: 0
 	};
 	$(".datepicker").datepicker({language:'es', enableOnReadonly: false});
-	$('.input-daterange input').each(function() {
-    $(this).datepicker('clearDates');
-	});
 	$.mask.definitions['h'] = "[APap]";
 	$.mask.definitions['z'] = "[Mm]";
 	$("#visitante_cedula").mask("999-9999999-9");
 	$(".v_hora").mask("99:99:99 hz");
 	$(".datepicker").mask("99/99/9999");
-	function updateTime(){
-    	var currentTime = new Date();
-    	var hours = currentTime.getHours();
-    	var hours12 = hours == 12 || hours == 0 ? 12 : hours % 12;
-    	var minutes = currentTime.getMinutes();
-    	if (minutes < 10){
-    	    minutes = "0" + minutes;
-   	 }
-   	 var seconds = currentTime.getSeconds();
-   	 if (seconds < 10) {
-   	 	seconds = "0" + seconds;
-   	 }
-   	 if (hours12 < 10) {
-			hours12 = "0" + hours12;
-   	 }
-   	 var t_str = hours12 + ":" + minutes + ":" + seconds + " ";
-   	 if(hours > 11){
-   	     t_str += "PM";
-   	 } else {
-   	     t_str += "AM";
-   	 }
-   	 document.getElementById('visita_hora').value = t_str;
-	}
+
 	var updatingTime = setInterval(updateTime, 1000);
 	
 	$("#reg_hora > a").on("click", ()=>{
@@ -60,25 +35,11 @@ $(document).ready(() => {
 		});
 		
 	$("#reg_fecha > a").on("click", ()=>$("#visita_fecha").removeAttr("readonly"));
-	
-	//var $table = $('#table');
 
-	function visitasCallback(mydata) {	
-		$('#visitas_table').bootstrapTable({
-   		data: mydata
-    	});
-    }
+
+    getVisitas();
+//	$(".pagination .active a").on("click", ()=>)
     
-    $.ajax({
-    	method:"GET",
-		url:"/visitas" + "",
-		dataType:"json"    
-    }).done(function (mydata) {
-		visitasCallback(mydata);
-		console.log(mydata);
-    }).fail(function () {
-		alert("fallo");    
-    });
 
 });
 
