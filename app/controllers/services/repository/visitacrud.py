@@ -1,6 +1,6 @@
 from session import session
 from models.visita import Visita
-from sqlalchemy import text
+from sqlalchemy import text, func
 
 
 #def get_visita(visita_id):
@@ -18,6 +18,10 @@ from sqlalchemy import text
 	
 	
 def get_all_visitas(params):
-    offset = params.args.get('offset')
-    limit = params.args.get('limit')
-    return session.query(Visita).order_by(Visita.id.desc()).slice(offset, limit).all()
+    offset = int(params.args.get('offset'))
+    limit = int(params.args.get('limit'))
+    print "offset=", offset, "limit=", limit
+    total = session.query(func.count('*')).select_from(Visita).scalar()
+    visitas = session.query(Visita).order_by(Visita.id.desc()).offset(offset).limit(limit).all()
+    print "size de visitas = ", len(visitas)
+    return {"total": total, "rows": visitas}

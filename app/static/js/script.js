@@ -7,7 +7,7 @@
   alert(target);
 });*/
 
-$(document).ready(() => {
+$(() => {
     $.fn.datepicker.dates['es'] = {
         days: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
         daysShort: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
@@ -40,22 +40,17 @@ $(document).ready(() => {
 
     $("#reg_fecha > a").on("click", () => $("#visita_fecha").removeAttr("readonly"));
 
+    popularTabla();
 
-    //getVisitas();
-    $(".pagination a").on("click", (evt) => {
-        var $evt = $(evt.target);
-        $(".pagination .active").removeClass("active");
-        $evt.parent().addClass("active");
-        //alert(evt.innerHTML);
-        var limit = parseInt($("#limit").val(), 10);
-        var offset = "offset=" + (limit * parseInt($evt.text()));
-        var limitplus = "limit=" + (limit + 1);
-        getVisitas({
-            "e": $evt,
-            "p": [offset, limitplus],
-            "limit": limit
+    $("#limit").change(function(e) {
+        var $e = $(e.target);
+        $('#visitas_table').bootstrapTable('refreshOptions', {
+            pagination: true,
+            //search: true,
+            pageSize: parseInt($e.val())
         });
     });
+
 
 
 });

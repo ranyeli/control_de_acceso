@@ -22,34 +22,29 @@
 	    $('#visita_hora').value = t_str;
 	}
 
-	function visitasCallback(mydata) {
-	    $('#visitas_table').bootstrapTable({
-	        data: mydata.visitas
-	    });
-	}
+	function popularTabla() {
 
-	function agregarPagina(e, n, limit) {
+	    var options = {
+	        url: "/visitas?",
+	        method: 'get',
+	        pageNumber: 1,
+	        pageSize: parseInt($("#limit").val()),
+	        queryParams: function(p) {
+	            console.log(p);
+	            return {
+	                limit: p.limit,
+	                offset: p.offset,
 
-	    var isNext = isNaN(e.parent().next().text());
-	    var isPrev = isNaN(e.parent().prev().text());
-	    if (n > limit && isNext) {
+	            };
+	        },
 
+	        cache: false,
+	        pagination: true,
+	        paginationLoop: true,
+	        nothing: true,
+	        sidePagination: 'server'
 	    }
 
-	}
+	    $('#visitas_table').bootstrapTable(options);
 
-	function getVisitas(params) {
-	    var args = params.p;
-	    var limit = parseint($("#limit").val());
-	    $.ajax({
-	        method: "GET",
-	        url: "/visitas?" + args.join("&"),
-	        dataType: "json"
-	    }).done(function(mydata) {
-	        visitasCallback(mydata);
-	        agregarPagina(params.e, mydata.total, limit);
-	        console.log(mydata);
-	    }).fail(function() {
-	        alert("fallo");
-	    });
 	}

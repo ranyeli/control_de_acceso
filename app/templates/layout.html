@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Control de Acceso</title>
@@ -8,11 +9,11 @@
     <link rel="stylesheet" href="{{url_for('static', filename='libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}">
 </head>
+
 <body>
 
     <div class="container">
-        {% block content %}
-        {% endblock %}
+        {% block content %} {% endblock %}
     </div>
     <footer class="container text-center">
         <a href="#">Robert Lopez ©</a>
@@ -21,8 +22,10 @@
     <script src="{{url_for('static', filename='libs/jquery.maskedinput.min.js')}}"></script>
     <script src="{{url_for('static', filename='libs/bootstrap/dist/js/bootstrap.min.js')}}"></script>
     <script src="{{url_for('static', filename='libs/bootstrap-table/dist/bootstrap-table.min.js')}}"></script>
+    <script src="{{url_for('static', filename='libs/bootstrap-table/dist/locale/bootstrap-table-es-ES.js')}}"></script>
     <script src="{{url_for('static', filename='libs/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
     <script src="{{url_for('static', filename='js/functions.js')}}"></script>
     <script src="{{url_for('static', filename='js/script.js')}}"></script>
 </body>
+
 </html>

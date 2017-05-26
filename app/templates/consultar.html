@@ -4,33 +4,23 @@
     </div>
     <div class="col-md-7">
         <label for="desde_hora" class="">Hora <span class="glyphicon glyphicon-time"></span></label>
-        <select class="form-control input-sm pull-right" id="limit">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>                                          
-        </select>
+        <div class="pull-right">
+
+            <select class="form-control input-sm" id="limit">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>                                          
+            </select>
+            <label for="limit">Filas por pagina</label>
+        </div>
     </div>
-    <!--<div class="col-md-3 text-right">
-        <select class="form-control input-sm">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>                                          
-        </select>
-    </div>-->
 
     <div class="pull-left">
         <div class="input-group input-daterange">
@@ -48,29 +38,6 @@
         </div>
     </div>
 
-
-    <!--<table>
-		<tr>
-			<td class="text-center"><label for="desde_fecha">Fecha</label></td>
-			<td class="text-center"><label for="desde_hora" class="">Hora</label></td>
-		</tr>
-		<tr>
-			<td>
-				<div class="input-group input-daterange">
-    				<input type="text" class="show form-control datepicker input-sm" name="desdeFecha" id="desde_fecha" placeholder="día/mes/año" />	  	
-    				<div class="input-group-addon">hasta</div>
-    				<input type="text" class="show form-control datepicker input-sm" name="hastaFecha" id="hasta_fecha" placeholder="día/mes/año" />	
-				</div>
-			</td>
-			<td>
-				<div class="input-group">
-					<input type="text" class="show form-control v_hora input-sm" name="desdeHora" id="desde_hora" placeholder="hh:mm:ss am" />	
-					<div class="input-group-addon">hasta</div>
-					<input type="text" class="show form-control v_hora input-sm" name="hastaHora" id="hasta_hora" placeholder="hh:mm:ss pm" />	
-				</div>
-			</td>
-		</tr>
-	</table>-->
     <div class="pull-left">
         <div class="input-group">
             <div class="input-group-btn">
@@ -90,7 +57,7 @@
 
     <!--	<span class="glyphicon glyphicon-plus btn-link btn-lg" id="add_filter"></span>-->
 </div>
-<table class="table" id="visitas_table">
+<table class="table" id="visitas_table" data-query-params="queryParams">
     <thead>
         <tr>
             <th data-field="visitante">VISITANTE</th>
@@ -105,7 +72,7 @@
         </tr>
     </thead>
 </table>
-<div class="text-center">
+<!--<div class="text-center">
     <ul class="pagination">
         <li><a href="#">&laquo;</a></li>
         <li class="active"><a href="#">1</a></li>
@@ -115,4 +82,4 @@
         <li><a href="#">5</a></li>
         <li><a>&raquo;</a></li>
     </ul>
-</div>
+</div>-->
