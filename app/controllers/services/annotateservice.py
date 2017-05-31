@@ -1,9 +1,15 @@
+# -*- coding: utf-8 -*-
+
+
 from datetime import datetime
+from dateutil.parser import parse
 from repository.generalcrud import *
+from repository.visitacrud import *
 from models.seguridad import Seguridad
 from models.visita import Visita
 from models.vehiculo import Vehiculo
 from models.visitante import Visitante
+from models.destino import Destino
 
 
 def save_visita(request):
@@ -11,27 +17,42 @@ def save_visita(request):
 	
 	visitante = Visitante()
 	visitante.nombre = f['visitanteNombre']
-	visitante.cedula = f['visitanteCedula']
+	visitante.identidad = f['visitanteIdentidad']
+	visitante.tipo_id = f['visitanteIdTipo']
 	insertdb(visitante)
 	
 	seguridad = Seguridad()
-	seguridad.nombre = f['visitaAutorizada']
+	seguridad.nombre = f['seguridadTurno']
+	print seguridad.nombre
 	insertdb(seguridad)
 	
 	vehiculo = Vehiculo()
-	vehiculo.descripcion = f['vehiculoDesc']
+	vehiculo.marca = f['vehiculoMarca']
+	vehiculo.color = f['vehiculoColor']
+	vehiculo.tipo = f['vehiculoTipo']
+	vehiculo.placa = f['vehiculoPlaca']
+	print vehiculo.color
 	insertdb(vehiculo)
 	
 	visita = Visita()
 	visita.origen = f['visitaOrigen']
-	visita.destino = f['visitaDestino']
+	visita.destino_id = f['destinoId']
 	visita.razon = f['visitaRazon']
-	visita.fecha_visita = f['visitaFecha']
-	visita.hora_visita = f['visitaHora']
-	visita.fecha_evento = datetime.now()
+	visita.fecha = parse("-".join(f['visitaFecha'].split("/")[::-1])).date()
+	visita.hora_entrada = parse(f['visitaHora']).time()
+	visita.autorizada_por = f['visitaAutorizada']
 	visita.seguridad_id = seguridad.id
 	visita.vehiculo_id = vehiculo.id
 	visita.visitante_id = visitante.id
+	print visita.fecha, visita.hora_entrada, visita.destino_id
 	insertdb(visita)
+
+def save_destino(destino):
+	empresa = Destino(empresa=destino)
+	insertdb(empresa)
+
+
+def update_salida(params):
+	actualizar_hora_salida(params)
 
 

@@ -1,8 +1,3 @@
-body {
-    #background-color: red;
-}
-
-
 /*form label{
 	margin-top: 10px;
 }*/
@@ -20,8 +15,8 @@ form textarea {
     padding-top: 15px;
 }
 
-#visitante_cedula {
-    max-width: 160px;
+#visitante_identidad {
+    min-width: 250px;
 }
 
 #visitante_nombre {
@@ -34,13 +29,13 @@ form textarea {
 
 #reg_submit input {
     position: relative;
-    top: 70px;
+    top: 30px;
 }
 
 @media (min-width: 1200px) {
     .container {
-        #max-width: 970px;
-        max-width: 900px;
+        /*max-width: 970px;*/
+        max-width: 920px;
     }
 }
 
@@ -65,7 +60,9 @@ form textarea {
 
 #filtros .input-sm,
 #visita_fecha,
-#visita_hora {
+#visita_hora,
+#visitante_identidad,
+#entra_sale {
     font-size: 1.15em;
 }
 
@@ -74,7 +71,7 @@ form textarea {
 }
 
 #filtros .pull-left {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 #limit {
@@ -84,4 +81,12 @@ form textarea {
     margin-right: 5px;
     /*position: relative;
     left: 95%;*/
+}
+
+#form_registrar label {
+    margin-top: 7px;
+}
+
+#entra_sale {
+    max-width: 200px;
 }

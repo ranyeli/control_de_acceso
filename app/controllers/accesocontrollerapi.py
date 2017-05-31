@@ -11,3 +11,16 @@ def getVisitas():
 	#jsonify({"total":len(visitas), "rows":[visita.serialize for visita in visitas]})
 	#jsonify([visita.serialize for visita in visitas])
 	return jsonify({"total":visitas["total"], "rows":[visita.serialize for visita in visitas["rows"]]})
+
+
+@app.route('/destinos/', methods=['GET'])
+def getDestinos():
+	destinos = check_destinos()
+	return jsonify([destino.serialize for destino in destinos])
+
+
+@app.route('/visita/tipo_id/<string:tipo_id>/identidad/<string:identidad>', methods=['GET'])
+def getVisita(tipo_id, identidad):
+	print tipo_id, identidad
+	visita = check_visita_reciente(tipo_id, identidad)
+	return jsonify(visita.serialize)

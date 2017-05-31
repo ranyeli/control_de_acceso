@@ -1,54 +1,106 @@
-<form id="form_registrar" role="form" class="clearfix" method="post" enctype="application/x-www-form-urlencoded" action="{{url_for('registerVisit')}}">
+<form id="form_registrar" role="form" class="clearfix" method="post" enctype="application/x-www-form-urlencoded" action="{{url_for('registerVisit', accion='entrada')}}">
+    <select class="form-control input-sm pull-right" id="entra_sale">
+        <option value="1">ENTRADA</option>
+        <option value="2">SALIDA</option>
+    </select>
 
-	<fieldset class="col-md-5">
-		<legend>DATOS GENERALES DE VISITA</legend>
-		
-		<label for="visita_fecha" class="control-label">FECHA</label>
-		<div class="input-group" id="reg_fecha"> 
-			<input type="text" id="visita_fecha" name="visitaFecha" class="form-control datepicker" value="{{fecha}}" readonly="readonly" />
-			<a href="#" class="input-group-addon">
-				<li class="glyphicon glyphicon-edit"></li>	
-			</a>
-		</div>
-		
-		<label for="visita_hora" class="control-label">HORA</label>
-		<div class="input-group" id="reg_hora"> 
-			<input type="text" id="visita_hora" name="visitaHora" class="form-control v_hora" value="{{hora}}" readonly="readonly" />
-			<a href="#" class="input-group-addon">
-				<li class="glyphicon glyphicon-edit"></li>		
-			</a>
-		</div>
+    <fieldset class="col-md-5">
+        <legend>DATOS GENERALES DE VISITA</legend>
 
-		<label for="visita_origen">ORIGEN</label>
-		<input type="text" placeholder="Desde donde viene el visitante" id="visita_origen" name="visitaOrigen"  class="form-control" />
-		
-		<label for="visita_destino">DESTINO</label>
-		<input type="text" placeholder="Hacia donde se dirige el visitante" id="visita_destino" name="visitaDestino"  class="form-control" />
+        <label for="visita_fecha" class="control-label">FECHA</label>
+        <div class="input-group" id="reg_fecha">
+            <input type="text" id="visita_fecha" name="visitaFecha" class="form-control datepicker" value="{{fecha}}" readonly="readonly" />
+            <a href="#" class="input-group-addon">
+                <li class="glyphicon glyphicon-edit"></li>
+            </a>
+        </div>
 
-		<label for="visita_razon">RAZON</label>
-		<textarea placeholder="Razon de la visita" id="visita_razon" name="visitaRazon"  class="form-control" ></textarea>
-		
-		<label for="visita_autorizada">AUTORIZADA POR</label>
-		<input type="text" placeholder="Quien autoriza la entrada del visitante" id="visita_autorizada" name="visitaAutorizada"  class="form-control" />
-	</fieldset>
+        <label for="visita_hora" class="control-label">HORA</label>
+        <div class="input-group" id="reg_hora">
+            <input type="text" id="visita_hora" name="visitaHora" class="form-control v_hora" value="{{hora}}" readonly="readonly" />
+            <a href="#" class="input-group-addon">
+                <li class="glyphicon glyphicon-edit"></li>
+            </a>
+        </div>
 
-	<fieldset class="col-md-5 col-md-offset-2 form-group">
-		<legend>VISITANTE</legend>
-		<label for="visitante_nombre">NOMBRE</label>
-		<input type="text" placeholder="Nombre del visitante" id="visitante_nombre" name="visitanteNombre"  class="form-control" />
-		
-		<label for="visitante_cedula">CEDULA</label>
-		<input type="text" placeholder="Cedula del visitante" id="visitante_cedula" name="visitanteCedula"  class="form-control" />
-	</fieldset>
-	
-	<fieldset class="col-md-4 col-md-offset-2 form-group">
-		<legend>VEHICULO</legend>
-		<label for="visitante_desc">DESCRIPCION</label>
-		<textarea placeholder="Describir el vehiculo" id="vehiculo_desc" name="vehiculoDesc"  class="form-control"></textarea>
-		
-		<div class="text-left" id="reg_submit">
-			<input type="submit" value="REGISTRAR" class="btn btn-default btn-lg" />
-		</div>
-	</fieldset>
-	
+        <label for="visita_origen">ORIGEN</label>
+        <input type="text" placeholder="Desde donde viene el visitante" id="visita_origen" name="visitaOrigen" class="form-control" />
+
+        <label for="visita_destino">DESTINO</label>
+        <div class="input-group">
+            <select id="visita_destino" name="visitaDestino" class="form-control">
+            </select>
+            <input type="text" class="hidden" id="destino_id" name="destinoId" />
+            <span class="input-group-btn" id="a_destino">
+                <button type="button" class="btn btn-default">
+                    <li class="glyphicon glyphicon-plus"></li>
+                </button>
+            </span>
+        </div>
+        <span class="pull-right text-success hidden" id="mensaje_destino">Destino registrado!</span>
+
+        <label for="visita_razon">RAZON</label>
+        <textarea placeholder="Razon de la visita" id="visita_razon" name="visitaRazon" class="form-control"></textarea>
+
+        <label for="visita_autorizada">AUTORIZADA POR</label>
+        <input type="text" placeholder="Quien autoriza la entrada del visitante" id="visita_autorizada" name="visitaAutorizada" class="form-control" />
+
+        <label for="seguridad_turno">SEGURIDAD DE TURNO</label>
+        <input type="text" placeholder="Seguridad de turno" id="seguridad_turno" name="seguridadTurno" class="form-control" />
+    </fieldset>
+
+    <fieldset class="col-md-5 col-md-offset-1 form-group">
+        <legend>VISITANTE</legend>
+        <label for="visitante_nombre">NOMBRE</label>
+        <input type="text" placeholder="Nombre del visitante" id="visitante_nombre" name="visitanteNombre" class="form-control" />
+
+        <!--<label for="visitante_id_tipo">TIPO DE ID</label>
+        <input type="text" placeholder="Tipo de identificación" id="visitante_id_tipo" name="visitanteIdTipo" class="form-control" />
+
+        <label for="visitante_identidad">IDENTIFICACION</label>
+        <input type="text" placeholder="Identificación del visitante" id="visitante_identidad" name="visitanteIdentidad" class="form-control" />-->
+
+        <label for="visitante_identidad">IDENTIFICACION</label>
+        <div class="input-group">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle btn-sm" id="visitante_id_tipo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <strong>CEDULA</strong> <span class="caret"></span>
+        </button>
+                <ul class="dropdown-menu" id="tipo_doc">
+                    <li class="hidden"><a href="#">CEDULA</a></li>
+                    <li class="show"><a href="#">LIC. DE CONDUCIR</a></li>
+                    <li class="show"><a href="#">PASAPORTE</a></li>
+                </ul>
+            </div>
+            <!-- /btn-group -->
+            <input type="text" name="visitanteIdTipo" id="visitante_tipo_id" class="hidden" />
+            <input type="text" class="show form-control input-sm" name="visitanteIdentidad" id="visitante_identidad" placeholder="Código de identificación" />
+            <span class="input-group-btn" id="b_visita">
+                <button type="button" class="btn btn-default input-sm">
+                    <li class="glyphicon glyphicon-search"></li>
+                </button>
+            </span>
+        </div>
+
+    </fieldset>
+
+    <fieldset class="col-md-4 col-md-offset-1 form-group">
+        <legend>VEHICULO</legend>
+        <label for="vehiculo_marca">MARCA</label>
+        <input type="text" placeholder="Marca del vehiculo" id="vehiculo_marca" name="vehiculoMarca" class="form-control" />
+
+        <label for="vehiculo_tipo">TIPO</label>
+        <input type="text" placeholder="Tipo de vehiculo" id="vehiculo_tipo" name="vehiculoTipo" class="form-control" />
+
+        <label for="vehiculo_placa">PLACA</label>
+        <input type="text" placeholder="Placa del vehiculo" id="vehiculo_placa" name="vehiculoPlaca" class="form-control" />
+
+        <label for="vehiculo_color">COLOR</label>
+        <input type="text" placeholder="Color del vehiculo" id="vehiculo_color" name="vehiculoColor" class="form-control" />
+
+        <div class="text-left" id="reg_submit">
+            <input type="submit" value="REGISTRAR" class="btn btn-default btn-lg" />
+        </div>
+    </fieldset>
+
 </form>

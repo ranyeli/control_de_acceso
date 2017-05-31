@@ -8,6 +8,7 @@ import models.visitante
 import models.visita
 import models.seguridad
 import models.vehiculo
+import models.destino
 
 with open('../config.json') as json_data_file:
     data = json_data_file.read()
