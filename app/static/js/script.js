@@ -88,7 +88,7 @@ $(() => {
         $e = $(e.target);
         $("#buscar_por strong").text($e.text());
         $("#a_buscar .hidden").toggleClass("hidden show");
-        $e.toggleClass("show hidden");
+        $e.parent().toggleClass("show hidden");
 
     });
 
@@ -98,8 +98,8 @@ $(() => {
         $e = $(e.target);
         $("#visitante_id_tipo strong").text($e.text());
         $("#visitante_tipo_id").val($e.text());
-        $("#tipo_doc li.hidden").toggleClass("hidden show");
-        $e.toggleClass("show hidden");
+        $("#tipo_doc .hidden").toggleClass("hidden show");
+        $e.parent().toggleClass("show hidden");
 
     });
 
