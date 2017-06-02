@@ -56,10 +56,12 @@ def get_all_visitas(params):
 
     #filter(Visita.fecha.between(desde_fecha, hasta_fecha)).\
     visitas = session.query(Visita).join(Visita.visitante).\
-    filter(and_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
-    Visitante.identidad.like("%{c}%".format(c=buscar)),
+    filter(and_(
+    or_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
+    Visitante.identidad.like("%{c}%".format(c=buscar))),
     Visita.fecha.between(desde_fecha, hasta_fecha),
-    and_(Visita.hora_entrada >= desde_hora, Visita.hora_salida <= hasta_hora))).\
+    and_(and_(Visita.hora_entrada.between(desde_hora, hasta_hora)), 
+    and_(Visita.hora_salida.between(desde_hora, hasta_hora))))).\
     order_by(Visita.id.desc()).\
     offset(offset).limit(limit).all()
     return {"total": total, "rows": visitas}

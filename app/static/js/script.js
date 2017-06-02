@@ -51,7 +51,6 @@ $(() => {
         $e = $(e.target);
         var isDate = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test($e.val());
         var isBlur = $e.val() == $e.data("prevBlur");
-        console.log(isBlur);
 
         if ((isDate || $.trim($e.val()).length == 0) && !isBlur) {
             //alert($e.attr('id'));
@@ -69,7 +68,9 @@ $(() => {
         var isHour = /[0-9]{2}:[0-9]{2}:[0-9]{2}\s[AaPp][Mm]/.test($e.val());
         var isSame = $e.val() == $e.data("isSame");
 
-        if (($.trim($e.val()).length == 0 || isHour) && !isSame) {
+        if (($.trim($e.val()) == "__:__:__ __" || isHour) && !isSame) {
+            $e.val(($.trim($e.val()) == "__:__:__ __" ? "" : $e.val()));
+
             $('#visitas_table').bootstrapTable('refreshOptions', {
                 queryParams: queryParams
             });
