@@ -19,6 +19,7 @@ class Visita(Base):
 	hora_salida = Column(Time, nullable=True)
 	autorizada_por = Column(String(50), nullable=False)
 	creado_en = Column(DateTime, default=datetime.now())
+	modificado_en = Column(DateTime, default=datetime.now(), onupdate=datetime.now())
 	vehiculo_id = Column(ForeignKey('vehiculo.id'))
 	visitante_id = Column(ForeignKey('visitante.id'), nullable=False)
 	seguridad_id = Column(ForeignKey('seguridad.id'), nullable=False)
@@ -38,6 +39,7 @@ class Visita(Base):
 			"hora_entrada": str(self.hora_entrada.strftime("%I:%M:%S %p")),
 			"hora_salida": str(hora_salida.strftime("%I:%M:%S %p")), 
 			"creado_en": str(self.creado_en.strftime("%d/%m/%Y %I:%M:%S %p")),
+			"modificado_en": str(self.modificado_en.strftime("%d/%m/%Y %I:%M:%S %p")),
 			"visitante_nombre": self.visitante.nombre, "visitante_identidad": self.visitante.identidad,
 			"visitante_tipo_id": self.visitante.tipo_id, "visitante_apellido": self.visitante.apellido,
 			"vehiculo_marca": self.vehiculo.marca, "vehiculo_tipo": self.vehiculo.tipo, 

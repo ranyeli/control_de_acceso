@@ -26,10 +26,10 @@ def get_all_visitas(params):
     limit = int(params.args.get('limit'))
 
     hasta_fecha = params.args.get('hasta_fecha')
-    hasta_fecha = "-".join(hasta_fecha.split("/")[::-1]) if hasta_fecha.strip() else None
+    hasta_fecha = "-".join(hasta_fecha.split("/")[::-1]) if hasta_fecha.strip() else str(datetime.now().date())
 
     desde_fecha = params.args.get('desde_fecha')
-    desde_fecha = "-".join(desde_fecha.split("/")[::-1]) if desde_fecha.strip() else None
+    desde_fecha = "-".join(desde_fecha.split("/")[::-1]) if desde_fecha.strip() else "1970-01-01"
     #if desde_fecha.strip():
     #    d,m,a = desde_fecha.split("/")
     #    desde_fecha = parse("{a}-{m}-{d}".format(a=a,m=m,d=d))
@@ -37,10 +37,10 @@ def get_all_visitas(params):
     #    desde_fecha = None
 
     desde_hora = params.args.get('desde_hora')
-    desde_hora = parse(desde_hora).time() if desde_hora else None
+    desde_hora = parse(desde_hora).time() if desde_hora else "00:00:01"
 
     hasta_hora = params.args.get('hasta_hora')
-    hasta_hora = parse(hasta_hora).time() if hasta_hora else None
+    hasta_hora = parse(hasta_hora).time() if hasta_hora else "23:59:59"
 
     buscar = params.args.get('buscar')
 
@@ -54,10 +54,12 @@ def get_all_visitas(params):
     # Visita.visitante.has(nombre=buscar))).order_by(Visita.id.desc()).\
     # offset(offset).limit(limit).all()
 
+    #filter(Visita.fecha.between(desde_fecha, hasta_fecha)).\
     visitas = session.query(Visita).join(Visita.visitante).\
-    filter(or_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
+    filter(and_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
     Visitante.identidad.like("%{c}%".format(c=buscar)),
-    Visita.fecha.between(desde_fecha, hasta_fecha))).\
+    Visita.fecha.between(desde_fecha, hasta_fecha),
+    and_(Visita.hora_entrada >= desde_hora, Visita.hora_salida <= hasta_hora))).\
     order_by(Visita.id.desc()).\
     offset(offset).limit(limit).all()
     return {"total": total, "rows": visitas}

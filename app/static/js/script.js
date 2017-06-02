@@ -67,11 +67,14 @@ $(() => {
     $("#filtros .v_hora").on("keyup", (e) => {
         $e = $(e.target);
         var isHour = /[0-9]{2}:[0-9]{2}:[0-9]{2}\s[AaPp][Mm]/.test($e.val());
+        var isSame = $e.val() == $e.data("isSame");
 
-        if ($.trim($e.val()).length == 0 || isHour) {
+        if (($.trim($e.val()).length == 0 || isHour) && !isSame) {
             $('#visitas_table').bootstrapTable('refreshOptions', {
                 queryParams: queryParams
             });
+
+            $e.data("isSame", $e.val());
         }
     });
 
