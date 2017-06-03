@@ -38,14 +38,14 @@ $(() => {
 
     popularTabla();
 
-    $("#limit").change(function(e) {
-        var $e = $(e.target);
-        $('#visitas_table').bootstrapTable('refreshOptions', {
-            //pagination: true,
-            //search: true,
-            pageSize: parseInt($e.val())
-        });
-    });
+    // $("#limit").change(function(e) {
+    //     var $e = $(e.target);
+    //     $('#visitas_table').bootstrapTable('refreshOptions', {
+    //         //pagination: true,
+    //         //search: true,
+    //         pageSize: parseInt($e.val())
+    //     });
+    // });
 
     $("#filtros .datepicker").on("change", (e) => {
         $e = $(e.target);
@@ -81,11 +81,8 @@ $(() => {
 
     $("#buscar_visita").on("keyup", (e) => {
         $e = $(e.target);
-
-        $('#visitas_table').bootstrapTable('refreshOptions', {
-            queryParams: queryParams
-        });
-
+        $("#consultar div.search > input").val($e.val());
+        $("#consultar div.search > input").keyup();
     });
 
     $("#a_buscar a").on("click", (e) => {
@@ -93,7 +90,9 @@ $(() => {
         $("#buscar_por strong").text($e.text());
         $("#a_buscar .hidden").toggleClass("hidden show");
         $e.parent().toggleClass("show hidden");
-
+        $('#visitas_table').bootstrapTable('refreshOptions', {
+            queryParams: queryParams
+        });
     });
 
     $("#visitante_tipo_id").val($("#visitante_id_tipo strong").text());

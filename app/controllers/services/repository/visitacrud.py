@@ -1,10 +1,11 @@
 from session import session
 from models.visita import Visita
 from models.visitante import Visitante
+from models.seguridad import Seguridad
 from sqlalchemy import text, func, or_, cast, Date, and_
 from dateutil.parser import parse
 from datetime import datetime
-from generalcrud import *
+from generalcrud import insertdb
 
 
 #def get_visita(visita_id):
@@ -30,11 +31,6 @@ def get_all_visitas(params):
 
     desde_fecha = params.args.get('desde_fecha')
     desde_fecha = "-".join(desde_fecha.split("/")[::-1]) if desde_fecha.strip() else "1970-01-01"
-    #if desde_fecha.strip():
-    #    d,m,a = desde_fecha.split("/")
-    #    desde_fecha = parse("{a}-{m}-{d}".format(a=a,m=m,d=d))
-    #else:
-    #    desde_fecha = None
 
     desde_hora = params.args.get('desde_hora')
     desde_hora = parse(desde_hora).time() if desde_hora else "00:00:01"
@@ -42,35 +38,44 @@ def get_all_visitas(params):
     hasta_hora = params.args.get('hasta_hora')
     hasta_hora = parse(hasta_hora).time() if hasta_hora else "23:59:59"
 
-    buscar = params.args.get('buscar')
+    buscar = params.args.get('search')
 
-    buscar_por = params.args.get('buscar_por')
+    buscar_por = params.args.get('buscarPor')
+    buscar_por = buscar_por.strip().lower() if buscar_por else None
 
     print desde_fecha, hasta_fecha, desde_hora, hasta_hora
     total = session.query(func.count('*')).select_from(Visita).scalar()
 
-    # visitas = session.query(Visita).\
-    # filter(or_(Visita.visitante.has(cedula=buscar),
-    # Visita.visitante.has(nombre=buscar))).order_by(Visita.id.desc()).\
-    # offset(offset).limit(limit).all()
+    or_visitante = or_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
+    Visitante.identidad.like("%{i}%".format(i=buscar)))
 
-    #filter(Visita.fecha.between(desde_fecha, hasta_fecha)).\
-    visitas = session.query(Visita).join(Visita.visitante).\
-    filter(and_(
-    or_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
-    Visitante.identidad.like("%{c}%".format(c=buscar))),
-    Visita.fecha.between(desde_fecha, hasta_fecha),
+    seguridad_turno = Seguridad.nombre.like("%{n}%".format(n=buscar))
+
+    autoriza = Visita.autorizada_por.like("%{n}%".format(n=buscar))
+
+    buscar_by = or_visitante
+
+    buscar_by = autoriza if buscar_por == "autorizado por" else buscar_by
+
+    buscar_by = seguridad_turno if buscar_por == "seguridad" else buscar_by
+
+    print str(seguridad_turno), str(autoriza), buscar_por
+
+    visitas = session.query(Visita).join(Visita.seguridad).join(Visita.visitante).\
+    filter(and_(buscar_by, Visita.fecha.between(desde_fecha, hasta_fecha),
     and_(and_(Visita.hora_entrada.between(desde_hora, hasta_hora)), 
     and_(Visita.hora_salida.between(desde_hora, hasta_hora))))).\
     order_by(Visita.id.desc()).\
     offset(offset).limit(limit).all()
     return {"total": total, "rows": visitas}
 
+
 def get_visita_reciente(tipo_id, identidad):
     visita = session.query(Visita).join(Visita.visitante).\
     filter( Visitante.tipo_id == tipo_id, Visitante.identidad == identidad ).\
     order_by(Visita.id.desc()).first();
     return visita
+
 
 def actualizar_hora_salida(args):
     tipo_id = args.form['visitanteIdTipo']

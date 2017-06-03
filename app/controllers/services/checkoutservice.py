@@ -1,9 +1,19 @@
 from repository.visitacrud import *
 from repository.destinocrud import *
+#from repository.session import session
 
 
 def check_visitas(params):
-	return get_all_visitas(params)
+    #visitas = None
+	#try:
+	visitas = get_all_visitas(params)
+	#except sqlalchemy.exc.InvalidRequestError as err:
+	#	session.rollback()
+	#	session.close()
+	#finally:
+	#	if not visitas:
+	#		visitas = get_all_visitas(params)
+	return visitas
 
 
 def check_destinos():

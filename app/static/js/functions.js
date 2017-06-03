@@ -31,7 +31,8 @@
 	        desde_hora: $('#desde_hora').val(),
 	        hasta_hora: $('#hasta_hora').val(),
 	        buscar: $("#buscar_visita").val(),
-	        buscarPor: $("#buscar_por strong").text()
+	        buscarPor: $("#buscar_por strong").text(),
+	        search: $("#consultar div.search > input").val()
 	    };
 	}
 
@@ -41,14 +42,17 @@
 	        url: "/visitas?",
 	        method: 'get',
 	        pageNumber: 1,
-	        pageSize: parseInt($("#limit").val()),
+	        pageSize: 10, //parseInt(queryParams.limit),
 	        queryParams: queryParams,
-	        //search: true,
+	        search: true,
 	        cache: false,
 	        pagination: true,
 	        paginationLoop: true,
 	        nothing: true,
-	        sidePagination: 'server'
+	        sidePagination: 'server',
+	        onPostBody: function() {
+	            $("#consultar div.search > input").addClass("hidden");
+	        }
 	    }
 
 	    $('#visitas_table').bootstrapTable(options);
