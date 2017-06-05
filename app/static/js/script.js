@@ -158,4 +158,20 @@ $(() => {
             });
     });
 
+    $('#exportar_excel').on('click', function(e) {
+        e.preventDefault();
+        // exportalExcel();
+        var params = {
+            desde_fecha: $('#desde_fecha').val(),
+            hasta_fecha: $('#hasta_fecha').val(),
+            desde_hora: $('#desde_hora').val(),
+            hasta_hora: $('#hasta_hora').val(),
+            buscar: $("#buscar_visita").val(),
+            buscarPor: $("#buscar_por strong").text(),
+            search: $("#consultar div.search > input").val()
+        };
+        var url = "/visitas/excel?" + $.param(params);
+        window.open(url, '_blank');
+    });
+
 });

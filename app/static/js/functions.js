@@ -36,6 +36,18 @@
 	    };
 	}
 
+	function excelQueryParams(p) {
+	    return {
+	        desde_fecha: $('#desde_fecha').val(),
+	        hasta_fecha: $('#hasta_fecha').val(),
+	        desde_hora: $('#desde_hora').val(),
+	        hasta_hora: $('#hasta_hora').val(),
+	        buscar: $("#buscar_visita").val(),
+	        buscarPor: $("#buscar_por strong").text(),
+	        search: $("#consultar div.search > input").val()
+	    };
+	}
+
 	function popularTabla() {
 
 	    var options = {
@@ -48,7 +60,6 @@
 	        cache: false,
 	        pagination: true,
 	        paginationLoop: true,
-	        nothing: true,
 	        sidePagination: 'server',
 	        onPostBody: function() {
 	            $("#consultar div.search > input").addClass("hidden");
@@ -114,4 +125,23 @@
 	        $autoriza.val(data.autorizada_por);
 	        $seguridad.val(data.seguridad_de_turno);
 	    }
+	}
+
+	function exportalExcel() {
+	    var options = {
+	        url: "/visitas/excel",
+	        method: 'get',
+	        queryParams: excelQueryParams,
+	        cache: false,
+	        onPostBody: function() {
+	            $('#to_export').table2excel({
+	                exclude: ".noExl",
+	                name: "Results",
+	                filename: "Reporte.xlsx", // Here, you can assign exported file name
+	                fileext: ".xlsx"
+	            });
+	        }
+	    }
+
+	    $('#to_export').bootstrapTable(options);
 	}

@@ -4,6 +4,14 @@
     </div>
     <div class="col-md-7">
         <label for="desde_hora" class="">Hora <span class="glyphicon glyphicon-time"></span></label>
+
+        <div class="pull-right input-group">
+
+            <button type="button" id="exportar_excel" class="btn btn-success form-control input-sm">
+                <span class="glyphicon glyphicon-export"></span>
+            </button>
+        </div>
+
         <!--<div class="pull-right">
 
             <select class="form-control input-sm" id="limit">
@@ -68,6 +76,24 @@
             <th data-field="hora_entrada">HORA ENTRADA</th>
             <th data-field="hora_salida">HORA SALIDA</th>
             <!--			<th data-field="fecha_evento">FECHA DEL SISTEMA</th>-->
+        </tr>
+    </thead>
+</table>
+
+<table class="table hidden" id="to_export" data-query-params="excelQueryParams">
+    <thead>
+        <tr>
+            <th data-field="visitante_nombre">VISITANTE</th>
+            <th data-field="visitante_tipo_id">TIPO ID</th>
+            <th data-field="visitante_identidad">VISITANTE ID</th>
+            <th data-field="origen">ORIGEN</th>
+            <th data-field="destino">DESTINO</th>
+            <th data-field="vehiculo_marca">VEHICULO</th>
+            <th data-field="autorizada_por">AUTORIZADA POR</th>
+            <th data-field="seguridad_de_turno">SEGURIDAD EN TURNO</th>
+            <th data-field="fecha">FECHA</th>
+            <th data-field="hora_entrada">HORA ENTRADA</th>
+            <th data-field="hora_salida">HORA SALIDA</th>
         </tr>
     </thead>
 </table>

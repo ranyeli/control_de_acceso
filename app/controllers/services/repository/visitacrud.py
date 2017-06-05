@@ -23,9 +23,9 @@ from generalcrud import insertdb
 	
 	
 def get_all_visitas(params):
-    offset = int(params.args.get('offset'))
-    limit = int(params.args.get('limit'))
-
+    offset = int(params.args.get('offset')) if params.args.get('offset') else 0
+    limit = int(params.args.get('limit')) if params.args.get('limit') else None
+ 
     hasta_fecha = params.args.get('hasta_fecha')
     hasta_fecha = "-".join(hasta_fecha.split("/")[::-1]) if hasta_fecha.strip() else str(datetime.now().date())
 
