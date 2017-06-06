@@ -43,9 +43,6 @@ def get_all_visitas(params):
     buscar_por = params.args.get('buscarPor')
     buscar_por = buscar_por.strip().lower() if buscar_por else None
 
-    print desde_fecha, hasta_fecha, desde_hora, hasta_hora
-    total = session.query(func.count('*')).select_from(Visita).scalar()
-
     or_visitante = or_(Visitante.nombre.like("%{n}%".format(n=buscar)), 
     Visitante.identidad.like("%{i}%".format(i=buscar)))
 
@@ -59,7 +56,11 @@ def get_all_visitas(params):
 
     buscar_by = seguridad_turno if buscar_por == "seguridad" else buscar_by
 
-    print str(seguridad_turno), str(autoriza), buscar_por
+    total = session.query(func.count('*')).select_from(Visita).\
+    join(Visita.seguridad).join(Visita.visitante).\
+    filter(and_(buscar_by, Visita.fecha.between(desde_fecha, hasta_fecha),
+    and_(and_(Visita.hora_entrada.between(desde_hora, hasta_hora)), 
+    and_(Visita.hora_salida.between(desde_hora, hasta_hora))))).scalar()
 
     visitas = session.query(Visita).join(Visita.seguridad).join(Visita.visitante).\
     filter(and_(buscar_by, Visita.fecha.between(desde_fecha, hasta_fecha),
