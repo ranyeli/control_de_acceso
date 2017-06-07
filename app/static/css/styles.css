@@ -90,3 +90,8 @@ form textarea {
 #entra_sale {
     max-width: 200px;
 }
+
+.error {
+    display: block;
+    color: red;
+}

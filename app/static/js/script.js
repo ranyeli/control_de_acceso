@@ -140,12 +140,16 @@ $(() => {
     });
 
     $('#form_registrar').submit(function(event) {
+        var isValid = false; //$("#form_registrar").valid();
 
-        event.preventDefault(); //this will prevent the default submit
+        if (isValid) {
+            event.preventDefault(); //this will prevent the default submit
 
-        $("#destino_id").val($("#visita_destino ~ .es-list").find(".es-visible").attr("value"));
+            $("#destino_id").val($("#visita_destino ~ .es-list").find(".es-visible").attr("value"));
 
-        $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+
+            $(this).unbind('submit').submit(); // continue the submit unbind preventDefault
+        }
     })
 
     $("#b_visita button").on("click", () => {
@@ -173,5 +177,40 @@ $(() => {
         var url = "/visitas/excel?" + $.param(params);
         window.open(url, '_blank');
     });
+
+    $("#form_registrar").validate({
+        errorPlacement: function(error, element) {
+            // error.insertBefore(element.parent().children("br"));
+            if (element.parent().hasClass("input-group")) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        rules: {
+            visitaFecha: "required",
+            visitaHora: "required",
+            visitaOrigen: "required",
+            visitaDestino: "required",
+            visitaRazon: "required",
+            visitaAutorizada: "required",
+            seguridadTurno: "required",
+            visitanteIdentidad: "required",
+            visitanteNombre: "required"
+        },
+        messages: {
+            visitaOrigen: "el origen es requerido",
+            visitaFecha: "fecha de entrada requerida",
+            visitaHora: "hora de entrada/salida requerida",
+            visitaDestino: "el destino es requerido",
+            visitaRazon: "se requiere una razon",
+            visitaAutorizada: "quien autorizó la entrada es requerido",
+            seguridadTurno: "el seguridad de turno es requerido",
+            visitanteIdentidad: "se requiere alguna identificación",
+            visitanteNombre: "el nombre del visitante es requerido"
+        }
+    });
+
+    // $("#form_registrar").validate();
 
 });
