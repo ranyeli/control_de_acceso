@@ -19,8 +19,9 @@ form textarea {
     min-width: 250px;
 }
 
-#visitante_nombre {
-    max-width: 270px;
+#visitante_nombre,
+#visitante_apellido {
+    max-width: 230px;
 }
 
 #reg_submit {
@@ -88,7 +89,9 @@ form textarea {
 }
 
 #entra_sale {
-    max-width: 200px;
+    max-width: 130px;
+    position: absolute;
+    left: 81%;
 }
 
 .error {

@@ -17,6 +17,7 @@ def save_visita(request):
 	
 	visitante = Visitante()
 	visitante.nombre = f['visitanteNombre']
+	visitante.apellido = f['visitanteApellido']
 	visitante.identidad = f['visitanteIdentidad']
 	visitante.tipo_id = f['visitanteIdTipo']
 	insertdb(visitante)
