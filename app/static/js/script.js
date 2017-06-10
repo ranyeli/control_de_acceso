@@ -23,8 +23,11 @@ $(() => {
     });
     $.mask.definitions['h'] = "[APap]";
     $.mask.definitions['z'] = "[Mm]";
+    $.mask.definitions['1'] = "[0-1]";
+    $.mask.definitions['5'] = "[0-5]";
+
     $("#visitante_cedula").mask("999-9999999-9");
-    $(".v_hora").mask("99:99:99 hz");
+    $(".v_hora").mask("19:59:59 hz");
     $(".datepicker").mask("99/99/9999");
 
     var updatingTime = setInterval(updateTime, 1000);
@@ -140,7 +143,7 @@ $(() => {
     });
 
     $('#form_registrar').submit(function(event) {
-        var isValid = false; //$("#form_registrar").valid();
+        var isValid = $("#form_registrar").valid();
 
         if (isValid) {
             event.preventDefault(); //this will prevent the default submit
@@ -157,7 +160,6 @@ $(() => {
             $("#visitante_tipo_id").val() +
             '/identidad/' + $("#visitante_identidad").val(),
             (data, status) => {
-                console.log(data);
                 popularRegistro(data);
             });
     });
@@ -187,6 +189,7 @@ $(() => {
                 error.insertAfter(element);
             }
         },
+
         rules: {
             visitaFecha: "required",
             visitaHora: "required",

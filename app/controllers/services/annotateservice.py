@@ -24,7 +24,6 @@ def save_visita(request):
 	
 	seguridad = Seguridad()
 	seguridad.nombre = f['seguridadTurno']
-	print seguridad.nombre
 	insertdb(seguridad)
 	
 	vehiculo = Vehiculo()
@@ -32,7 +31,6 @@ def save_visita(request):
 	vehiculo.color = f['vehiculoColor']
 	vehiculo.tipo = f['vehiculoTipo']
 	vehiculo.placa = f['vehiculoPlaca']
-	print vehiculo.color
 	insertdb(vehiculo)
 	
 	visita = Visita()
@@ -45,7 +43,6 @@ def save_visita(request):
 	visita.seguridad_id = seguridad.id
 	visita.vehiculo_id = vehiculo.id
 	visita.visitante_id = visitante.id
-	print visita.fecha, visita.hora_entrada, visita.destino_id
 	insertdb(visita)
 
 def save_destino(destino):

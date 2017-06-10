@@ -32,12 +32,12 @@ class Visita(Base):
 	
 	@property
 	def serialize(self):
-		hora_salida = self.hora_salida or self.hora_entrada
+		hora_salida = str(self.hora_salida.strftime("%I:%M:%S %p")) if self.hora_salida else "..."
 		return {
 			"origen": self.origen, "destino": self.destino.empresa,
 			"razon": self.razon, "fecha": str(self.fecha.strftime("%d/%m/%Y")),
 			"hora_entrada": str(self.hora_entrada.strftime("%I:%M:%S %p")),
-			"hora_salida": str(hora_salida.strftime("%I:%M:%S %p")), 
+			"hora_salida": hora_salida, 
 			"creado_en": str(self.creado_en.strftime("%d/%m/%Y %I:%M:%S %p")),
 			"modificado_en": str(self.modificado_en.strftime("%d/%m/%Y %I:%M:%S %p")),
 			"visitante_nombre": self.visitante.nombre, "visitante_identidad": self.visitante.identidad,

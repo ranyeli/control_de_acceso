@@ -100,7 +100,7 @@
 
 	function popularRegistro(data) {
 	    var $nombre = $("#visitante_nombre");
-	    //var $apellido = $("#visitante_apellido");
+	    var $apellido = $("#visitante_apellido");
 	    var $v_marca = $("#vehiculo_marca");
 	    var $v_tipo = $("#vehiculo_tipo");
 	    var $v_color = $("#vehiculo_color");
@@ -113,7 +113,7 @@
 
 	    var isEntrando = $("#entra_sale").val() == 1;
 	    $nombre.val(data.visitante_nombre);
-	    //$apellido.val(data.visitante_apellido)
+	    $apellido.val(data.visitante_apellido);
 	    if (!isEntrando) {
 	        $v_color.val(data.vehiculo_color);
 	        $v_marca.val(data.vehiculo_marca);
