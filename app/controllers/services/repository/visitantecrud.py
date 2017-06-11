@@ -1,10 +1,14 @@
-from session import session
+from session import session, DBSession
 from models.visitante import Visitante
 
 
 def get_visitante(visitante_id):
-    return session.query(Visitante).filter(Visitante.id == visitante_id).one()
+    visitante = session.query(Visitante).filter(Visitante.id == visitante_id).one()
+    DBSession.remove()
+    return visitante
 
 
 def get_all_visitante():
-    return session.query(Visitante).order_by(Visitante.id.desc()).all()
+    visitantes =  session.query(Visitante).order_by(Visitante.id.desc()).all()
+    DBSession.remove()
+    return visitantes

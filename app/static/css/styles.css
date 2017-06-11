@@ -98,3 +98,10 @@ form textarea {
     display: block;
     color: red;
 }
+
+.flashes {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 30px;
+    z-index: 999;
+}

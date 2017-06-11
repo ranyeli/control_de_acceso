@@ -215,5 +215,6 @@ $(() => {
     });
 
     // $("#form_registrar").validate();
+    $(".flashes").fadeOut(6000);
 
 });

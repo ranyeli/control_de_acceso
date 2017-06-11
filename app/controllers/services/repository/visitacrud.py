@@ -1,4 +1,4 @@
-from session import session
+from session import session, DBSession
 from models.visita import Visita
 from models.visitante import Visitante
 from models.seguridad import Seguridad
@@ -74,7 +74,7 @@ def get_all_visitas(params):
     Visita.hora_entrada.between(desde_hora, hasta_hora), hora_salida_if)).\
     order_by(Visita.id.desc()).\
     offset(offset).limit(limit).all()
-    print session.query(Visita).order_by(Visita.id.desc()).first().hora_salida, session.query(Visita).order_by(Visita.id.desc()).first().autorizada_por
+    # print session.query(Visita).order_by(Visita.id.desc()).first().hora_salida, session.query(Visita).order_by(Visita.id.desc()).first().autorizada_por
     return {"total": total, "rows": visitas}
 
 
@@ -82,6 +82,7 @@ def get_visita_reciente(tipo_id, identidad):
     visita = session.query(Visita).join(Visita.visitante).\
     filter( Visitante.tipo_id == tipo_id, Visitante.identidad == identidad ).\
     order_by(Visita.id.desc()).first();
+    DBSession.remove()
     return visita
 
 
@@ -89,7 +90,7 @@ def actualizar_hora_salida(args):
     tipo_id = args.form['visitanteIdTipo']
     identidad = args.form['visitanteIdentidad']
     hora_salida = parse(args.form['visitaHora']).time()
-
+    print tipo_id, identidad, hora_salida
     visita = session.query(Visita).join(Visita.visitante).\
     filter( Visitante.tipo_id == tipo_id, Visitante.identidad == identidad ).\
     order_by(Visita.id.desc()).first();

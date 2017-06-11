@@ -14,6 +14,12 @@ from all_controllers import app
 
 app.secret_key = 'thisIsMySecretKey'
 
+# @app.teardown_request
+# def session_clear(exception=None):
+#     Session.remove()
+#     if exception and Session.is_active:
+#         Session.rollback()
+
 
 if __name__ == '__main__':
 

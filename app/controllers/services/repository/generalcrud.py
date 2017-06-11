@@ -1,6 +1,10 @@
-from session import session
+from session import session, DBSession
 
 
 def insertdb(entity):
     session.add(entity)
-    session.commit()
+    try:
+        session.commit()
+        DBSession.remove()
+    except:
+        session.rollback()

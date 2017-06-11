@@ -14,10 +14,13 @@ def accessControl():
 
 @app.route('/registrar/<string:accion>',  methods=['POST'])
 def registerVisit(accion):
+
 	if accion.lower().strip() == 'entrada':
 		save_visita(request)
+		flash("entrada registrada exitosamente!")
 	elif accion.lower().strip() == 'salida':
 		update_salida(request)
+		flash("salida registrada exitosamente!")
 	return redirect(url_for('accessControl'))
 	
 
