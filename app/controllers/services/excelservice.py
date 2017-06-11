@@ -25,7 +25,7 @@ def get_excel(params):
     worksheet.write(0,4, 'DESTINO', bold)
     worksheet.write(0,5, 'VEHICULO', bold)
     worksheet.write(0,6, 'AUTORIZADO POR', bold)
-    worksheet.write(0,7, 'SEGURIDAD EN TRUNO', bold)
+    worksheet.write(0,7, 'SEGURIDAD EN TURNO', bold)
     worksheet.write(0,8, 'FECHA', bold)
     worksheet.write(0,9, 'HORA ENTRADA', bold)
     worksheet.write(0,10, 'HORA SALIDA', bold)
