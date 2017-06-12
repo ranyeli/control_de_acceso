@@ -4,15 +4,7 @@ from repository.destinocrud import *
 
 
 def check_visitas(params):
-    #visitas = None
-	#try:
 	visitas = get_all_visitas(params)
-	#except sqlalchemy.exc.InvalidRequestError as err:
-	#	session.rollback()
-	#	session.close()
-	#finally:
-	#	if not visitas:
-	#		visitas = get_all_visitas(params)
 	return visitas
 
 

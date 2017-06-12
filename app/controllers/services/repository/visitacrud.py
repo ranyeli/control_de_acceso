@@ -74,7 +74,6 @@ def get_all_visitas(params):
     Visita.hora_entrada.between(desde_hora, hasta_hora), hora_salida_if)).\
     order_by(Visita.id.desc()).\
     offset(offset).limit(limit).all()
-    # print session.query(Visita).order_by(Visita.id.desc()).first().hora_salida, session.query(Visita).order_by(Visita.id.desc()).first().autorizada_por
     return {"total": total, "rows": visitas}
 
 
@@ -90,7 +89,6 @@ def actualizar_hora_salida(args):
     tipo_id = args.form['visitanteIdTipo']
     identidad = args.form['visitanteIdentidad']
     hora_salida = parse(args.form['visitaHora']).time()
-    print tipo_id, identidad, hora_salida
     visita = session.query(Visita).join(Visita.visitante).\
     filter( Visitante.tipo_id == tipo_id, Visitante.identidad == identidad ).\
     order_by(Visita.id.desc()).first();

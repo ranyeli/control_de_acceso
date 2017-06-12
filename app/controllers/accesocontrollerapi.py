@@ -21,7 +21,6 @@ def getDestinos():
 
 @app.route('/visita/tipo_id/<string:tipo_id>/identidad/<string:identidad>', methods=['GET'])
 def getVisita(tipo_id, identidad):
-	print tipo_id, identidad
 	visita = check_visita_reciente(tipo_id, identidad)
 	json = jsonify(visita.serialize) if visita else jsonify({})
 	return json
