@@ -5,6 +5,7 @@ def insertdb(entity):
     session.add(entity)
     try:
         session.commit()
-        DBSession.remove()
     except:
-        session.rollback()
+        DBSession.rollback()
+    finally:
+        DBSession.remove()
