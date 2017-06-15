@@ -16,11 +16,13 @@ $(() => {
         /* Leverages same syntax as 'format' */
         weekStart: 0
     };
+
     $(".datepicker").datepicker({
         language: 'es',
         enableOnReadonly: false,
         clearBtn: true
     });
+
     $.mask.definitions['h'] = "[APap]";
     $.mask.definitions['z'] = "[Mm]";
     $.mask.definitions['1'] = "[0-1]";
@@ -41,23 +43,13 @@ $(() => {
 
     popularTabla();
 
-    // $("#limit").change(function(e) {
-    //     var $e = $(e.target);
-    //     $('#visitas_table').bootstrapTable('refreshOptions', {
-    //         //pagination: true,
-    //         //search: true,
-    //         pageSize: parseInt($e.val())
-    //     });
-    // });
-
     $("#filtros .datepicker").on("change", (e) => {
         $e = $(e.target);
         var isDate = /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/.test($e.val());
         var isBlur = $e.val() == $e.data("prevBlur");
 
         if ((isDate || $.trim($e.val()).length == 0) && !isBlur) {
-            //alert($e.attr('id'));
-            // my match regex /[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
+
             $('#visitas_table').bootstrapTable('refreshOptions', {
                 queryParams: queryParams
             });
@@ -166,7 +158,7 @@ $(() => {
 
     $('#exportar_excel').on('click', function(e) {
         e.preventDefault();
-        // exportalExcel();
+
         var params = {
             desde_fecha: $('#desde_fecha').val(),
             hasta_fecha: $('#hasta_fecha').val(),
@@ -182,7 +174,7 @@ $(() => {
 
     $("#form_registrar").validate({
         errorPlacement: function(error, element) {
-            // error.insertBefore(element.parent().children("br"));
+
             if (element.parent().hasClass("input-group")) {
                 error.insertAfter(element.parent());
             } else {
@@ -214,7 +206,6 @@ $(() => {
         }
     });
 
-    // $("#form_registrar").validate();
     $(".flashes").fadeOut(6000);
 
 });
