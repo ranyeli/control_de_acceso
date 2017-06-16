@@ -79,9 +79,6 @@ def get_all_visitas(params):
         offset(offset).limit(limit).all()
     except:
         DBSession.rollback()
-        result = get_all_visitas(params)
-        total = result["total"]
-        visitas = result["rows"]
     finally:
         DBSession.remove()
     return {"total": total, "rows": visitas}
@@ -95,7 +92,6 @@ def get_visita_reciente(tipo_id, identidad):
         order_by(Visita.id.desc()).first();
     except:
         DBSession.rollback()
-        visita = get_visita_reciente(tipo_id, identidad)
     finally:
         DBSession.remove()
     return visita
@@ -105,7 +101,7 @@ def actualizar_hora_salida(args):
     tipo_id = args.form['visitanteIdTipo']
     identidad = args.form['visitanteIdentidad']
     hora_salida = parse(args.form['visitaHora']).time()
-    
+
     visita = session.query(Visita).join(Visita.visitante).\
     filter( Visitante.tipo_id == tipo_id, Visitante.identidad == identidad ).\
     order_by(Visita.id.desc()).first();
